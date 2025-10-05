@@ -7,15 +7,15 @@ This project demonstrates a **production-simulated FastAPI deployment** inside a
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 We designed a minimal FastAPI service and deployed it **inside an Azure virtual machine** using a realistic on-prem-style workflow. The application is served via Uvicorn and auto-managed as a background service using `systemd`.
 
-> ⚙️ This is intended to **simulate edge/on-prem deployments**, where internet access may be limited or blocked during runtime.
+> This is intended to **simulate edge/on-prem deployments**, where internet access may be limited or blocked during runtime.
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Azure VM** (Debian/Ubuntu)
 - **FastAPI** + **Uvicorn**
@@ -27,7 +27,7 @@ We designed a minimal FastAPI service and deployed it **inside an Azure virtual 
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
 ```
 fastapi_offline_vm/
@@ -40,9 +40,9 @@ fastapi_offline_vm/
 
 ---
 
-## ⚙️ Deployment Steps
+##  Deployment Steps
 
-### 🔧 1. VM Setup
+###  1. VM Setup
 - Create Ubuntu/Debian Azure VM
 - SSH using `.pem` key (via PowerShell or Git Bash)
 - Install Python, pip, venv, tmux:
@@ -51,7 +51,7 @@ fastapi_offline_vm/
   sudo apt install -y python3 python3-pip python3-venv tmux
   ```
 
-### 📦 2. Prepare on Local (with Internet)
+###  2. Prepare on Local (with Internet)
 - Write FastAPI app and requirements.txt
 - Run:
   ```bash
@@ -59,7 +59,7 @@ fastapi_offline_vm/
   ```
 - SCP the entire project folder to the VM
 
-### 🔌 3. Inside the VM
+###  3. Inside the VM
 - Create and activate venv:
   ```bash
   python3 -m venv venv
@@ -70,14 +70,14 @@ fastapi_offline_vm/
   pip install --no-index --find-links=offline_packages -r app/requirements.txt
   ```
 
-### 🧪 4. Test with `tmux`
+###  4. Test with `tmux`
 - Start a tmux session:
   ```bash
   tmux new -s fastapi_app
   uvicorn main:app --host 0.0.0.0 --port 8000
   ```
 
-### 🔁 5. Or Use `systemd`
+###  5. Or Use `systemd`
 - Copy `fastapi.service` to `/etc/systemd/system/`
 - Enable service:
   ```bash
@@ -91,7 +91,7 @@ fastapi_offline_vm/
   journalctl -u fastapi.service -f
   ```
 
-### 🔍 6. Test Endpoint via SSH Tunnel
+###  6. Test Endpoint via SSH Tunnel
 On your local machine:
 
 ```bash
@@ -102,13 +102,13 @@ Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## 🔒 Security Practices
+##  Security Practices
 - PEM file permissions were fixed via PowerShell ACLs to enable OpenSSH usage
 - Port 8000 exposed only locally for testing (tunneled, not public)
 
 ---
 
-## ✅ Sample Endpoints
+##  Sample Endpoints
 
 - `/` → `{{"message": "Hello from offline FastAPI on Azure VM!"}}`
 - `/info` → `{{"status": "ok", "note": "offline FastAPI test"}}`
@@ -116,7 +116,7 @@ Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## 📚 What I Learned
+##  What I Learned
 
 - Working with **Azure CLI and VM creation**
 - Running **FastAPI in offline environments**
