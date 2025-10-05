@@ -125,7 +125,3 @@ Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - Building SSH tunnels to test internal services
 
 ---
-
-## 🧠 Author
-
-**Sameera Hussain** – M.S. in Bioinformatics & Computational Biology, Saint Louis University (2025)
