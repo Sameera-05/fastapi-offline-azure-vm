@@ -58,6 +58,9 @@ fastapi_offline_vm/
   pip download -r app/requirements.txt -d offline_packages/
   ```
 - SCP the entire project folder to the VM
+<img width="1960" height="1297" alt="image" src="https://github.com/user-attachments/assets/bf597f89-da05-4239-a8e9-bf301d5291ea" />
+<img width="1470" height="867" alt="image" src="https://github.com/user-attachments/assets/01984848-2a97-472f-b117-143f02ce8638" />
+
 
 ###  3. Inside the VM
 - Create and activate venv:
@@ -90,6 +93,7 @@ fastapi_offline_vm/
   sudo systemctl status fastapi.service
   journalctl -u fastapi.service -f
   ```
+<img width="3060" height="1112" alt="image" src="https://github.com/user-attachments/assets/eba1b321-850e-428e-9030-565767aa24a1" />
 
 ###  6. Test Endpoint via SSH Tunnel
 On your local machine:
@@ -99,6 +103,7 @@ ssh -i path/to/key.pem -L 8000:127.0.0.1:8000 azureuser@<vm-ip>
 ```
 
 Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+<img width="1722" height="765" alt="image" src="https://github.com/user-attachments/assets/61f2b330-213c-4856-8f00-e1f97d7c8c75" />
 
 ---
 
@@ -113,6 +118,7 @@ Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - `/` → `{{"message": "Hello from offline FastAPI on Azure VM!"}}`
 - `/info` → `{{"status": "ok", "note": "offline FastAPI test"}}`
 - `/health` → `{{"status": "healthy"}}`
+<img width="1890" height="135" alt="image" src="https://github.com/user-attachments/assets/3ac5f4b5-26c5-4d14-99be-3812536b222f" />
 
 ---
 
