@@ -2,9 +2,8 @@
 
 This project demonstrates a **production-simulated FastAPI deployment** inside an Azure Linux VM, without direct internet access during runtime. It includes:
 - Manual `.whl` package management (`pip install --no-index`)
-- `tmux` and `systemd`-based process management
+- `systemd`-based process management
 - Health-check endpoint and offline monitoring via `journalctl`
-
 ---
 
 ## Project Overview
@@ -20,7 +19,6 @@ We designed a minimal FastAPI service and deployed it **inside an Azure virtual 
 - **Azure VM** (Debian/Ubuntu)
 - **FastAPI** + **Uvicorn**
 - **Python 3.11**
-- **tmux** (for persistent terminal sessions)
 - **systemd** (to register FastAPI as a service)
 - **SSH tunnel** for local endpoint testing
 - **Offline pip install** with `--no-index`
@@ -61,7 +59,6 @@ fastapi_offline_vm/
 <img width="1960" height="1297" alt="image" src="https://github.com/user-attachments/assets/bf597f89-da05-4239-a8e9-bf301d5291ea" />
 <img width="1470" height="867" alt="image" src="https://github.com/user-attachments/assets/01984848-2a97-472f-b117-143f02ce8638" />
 
-
 ###  3. Inside the VM
 - Create and activate venv:
   ```bash
@@ -72,15 +69,7 @@ fastapi_offline_vm/
   ```bash
   pip install --no-index --find-links=offline_packages -r app/requirements.txt
   ```
-
-###  4. Test with `tmux`
-- Start a tmux session:
-  ```bash
-  tmux new -s fastapi_app
-  uvicorn main:app --host 0.0.0.0 --port 8000
-  ```
-
-###  5. Or Use `systemd`
+###  4. Or Use `systemd`
 - Copy `fastapi.service` to `/etc/systemd/system/`
 - Enable service:
   ```bash
@@ -95,7 +84,7 @@ fastapi_offline_vm/
   ```
 <img width="3060" height="1112" alt="image" src="https://github.com/user-attachments/assets/eba1b321-850e-428e-9030-565767aa24a1" />
 
-###  6. Test Endpoint via SSH Tunnel
+###  5. Test Endpoint via SSH Tunnel
 On your local machine:
 
 ```bash
@@ -126,8 +115,9 @@ Then open browser to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 - Working with **Azure CLI and VM creation**
 - Running **FastAPI in offline environments**
-- Using **tmux** to persist sessions
 - Writing **systemd unit files** for service monitoring
+- Building **SSH tunnels** to test internal services
+
 - Building SSH tunnels to test internal services
 
 ---
